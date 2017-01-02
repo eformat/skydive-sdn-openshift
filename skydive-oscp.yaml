@@ -186,7 +186,7 @@ items:
           name: docker
         - hostPath:
             path:  /var/run/openvswitch/db.sock
-          name: run
+          name: ovsdb
   status:
     currentNumberScheduled: 3
     desiredNumberScheduled: 3
