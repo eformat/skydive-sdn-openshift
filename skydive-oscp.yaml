@@ -188,8 +188,5 @@ items:
             path: /var/run/openvswitch/db.sock
           name: ovsdb
   status:
-    currentNumberScheduled: 3
-    desiredNumberScheduled: 3
-    numberMisscheduled: 0
 kind: List
 metadata: {}
