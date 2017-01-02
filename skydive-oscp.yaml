@@ -39,9 +39,9 @@ items:
           - name: SKYDIVE_GRAPH_BACKEND
             value: elasticsearch
           - name: SKYDIVE_USERNAME
-            value: ivan
+            value: admin
           - name: SKYDIVE_PASSWORD
-            value: ivan
+            value: password
           image: skydive/skydive
           imagePullPolicy: Always
           name: skydive-analyzer
@@ -56,9 +56,9 @@ items:
           terminationMessagePath: /dev/termination-log
         - env:
           - name: SKYDIVE_USERNAME
-            value: ivan
+            value: admin
           - name: SKYDIVE_PASSWORD
-            value: ivan
+            value: password
           image: elasticsearch:2
           imagePullPolicy: IfNotPresent
           name: skydive-elasticsearch
@@ -129,13 +129,6 @@ items:
       name: skydive-analyzer
       weight: 100
   status:
-    ingress:
-    - conditions:
-      - lastTransitionTime: 2016-11-29T18:38:33Z
-        status: "True"
-        type: Admitted
-      host: skydive-analyzer-network.13.79.160.207.xip.io
-      routerName: router
 - apiVersion: extensions/v1beta1
   kind: DaemonSet
   metadata:
@@ -162,7 +155,7 @@ items:
           - agent
           env:
           - name: SKYDIVE_AGENT_ANALYZERS
-            value: skydive-analyzer:8082
+            value: skydive-analyzer.network.svc.cluster.local:8082
           image: skydive/skydive
           imagePullPolicy: Always
           name: skydive-agent
