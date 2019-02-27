@@ -1,20 +1,10 @@
 # skydive-sdn-openshift
-A mini tutorial to use Openstack Skydive project to visualize the Openshift SDN
-Simply based on kube template http://skydive-project.github.io/skydive/getting-started/kubernetes/
 
+https://github.com/skydive-project/skydive/tree/master/contrib/openshift
 
-
-## Create Project 
-oc new-project network
-
-## Give Rights to access sdn sockets (catch all, should fine tune)
-oadm policy add-scc-to-user  privileged system:serviceaccount:$(oc project -q):default
-
-## Daemon Set to deploy collector
-oc label nodes --all sky-dive-collector=true
-
-## Deploy Objects 
-oc create -f https://raw.githubusercontent.com/ivanthelad/skydive-sdn-openshift/master/skydive-oscp.yaml
-
-
-Browse to the Route endpoint and the visualizer should be available 
+    oc adm new-project --node-selector='' skydive
+    oc project skydive
+    oc adm policy add-scc-to-user privileged -z default
+    oc adm policy add-cluster-role-to-user cluster-reader -z default
+    VERSION=master
+    oc process -f https://raw.githubusercontent.com/skydive-project/skydive/${VERSION}/contrib/openshift/skydive-template.yaml | oc apply -f -
